@@ -41,12 +41,14 @@ return(
                             </h1>
                         </div>
                     </div>
+
                     <div className="pt-2 ps-2 pe-2">
                         {/* Background styled in css file  */}
                         <p className="p-2 rounded" id="textContent" style={{boxShadow: "0px 0px 5px black"}}>
                             {data.body}
                         </p>
                     </div>
+                    
                     <div className="ps-2 pe-2 pb-1">
                         <div id="commentSection" className="ps-2 pe-2 pb-4 rounded" style={{boxShadow: "0px 0px 5px black"}}>
                             <h1>Comments</h1>
