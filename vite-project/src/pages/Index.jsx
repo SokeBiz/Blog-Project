@@ -6,11 +6,22 @@ import { Link } from "react-router-dom";
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useRef } from "react";
 import Typed from 'typed.js'
+import axios from "axios"
 
 function Index() {
 
+    const [data, setData] = useState([])
 
-
+    useEffect(() => {
+        const getData = async () => {
+            const url = 'https://blogim.onrender.com'
+            const res = await axios.get(url)
+            data.push(res.data)
+            setData(...data)
+            console.log(data); 
+        }
+        {data.length <1 ? getData() : (console.log("loading"));}
+    }, [data])
 
     const typer = useRef(null)
 
@@ -64,34 +75,43 @@ function Index() {
 
                 </main>
 
+
+                {/* News Section  */}
                 <section className="p-3">
 
                     <h1 className="p-3 fw-bolder">
                         Latest news
                     </h1>
-                    <div className="d-flex flex-wrap"
-                        data-aos="fade-right" 
+                    <div className="d-flex flex-wrap">
+                        {/* data-aos="fade-right" 
                         data-aos-duration='500'
                         data-aos-once='true'
                         data-aos-delay='0'
                         data-aos-offset="500"
-                        data-aos-easing="ease-in-sine">
+                        data-aos-easing="ease-in-sine" */}
                         {/* News Cards  */}
 
-                        <div className="card m-2" id="card" style={{width:'19rem'}}>
-                            <img src={image} style={{width: '19rem', height: '11rem'}} className="card-img-top" />
-                            <div className="card-body">
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div className="d-flex justify-content-between">
-                                    <p className="fw-bold text-success">Comments <i className="bi bi-chat-fill"></i>: 11</p>
-                                    <p className="fw-bold text-secondary">Likes<i className="bi bi-hand-thumbs-up-fill"></i>: 10</p>
+
+                    {
+                    data.map((news, index) =>{
+                        return(
+                            <div key={index} className="card m-2" id="card" style={{width:'19rem'}}>
+                                <img src={news.img} style={{width: '19rem', height: '11rem'}} className="card-img-top" />
+                                <div className="card-body">
+                                    <p className="card-text">{news.tittle}</p>
+                                    <div className="d-flex justify-content-between">
+                                        <p className="fw-bold text-success">Comments <i className="bi bi-chat-fill"></i>: 11</p>
+                                        <p className="fw-bold text-secondary">Likes<i className="bi bi-hand-thumbs-up-fill"></i>: 10</p>
+                                    </div>
+                                    <Link to={`/Content/${news._id}`} className='readmore text-dark'>Read More...</Link>
                                 </div>
-                                <Link to={'/Content'} className='readmore text-dark'>Read More...</Link>
                             </div>
-                        </div>
+                        )
+                    })}
+                        
                         
 
-                        <div className="card m-2" id="card" style={{width:'19rem'}}>
+                        {/* <div className="card m-2" id="card" style={{width:'19rem'}}>
                             <img src={image} className="card-img-top"/>
                             <div className="card-body">
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -101,55 +121,7 @@ function Index() {
                                 </div>
                                 <Link to={'/Navbar'} className='readmore text-dark'>Read More...</Link>
                             </div>
-                        </div>
-
-                        <div className="card m-2" id="card" style={{width:'19rem'}}>
-                            <img src={image} className="card-img-top"/>
-                            <div className="card-body">
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div className="d-flex justify-content-between">
-                                    <p className="fw-bold text-success">Comments <i className="bi bi-chat-fill"></i>: 11</p>
-                                    <p className="fw-bold text-secondary">Likes<i className="bi bi-hand-thumbs-up-fill"></i>: 10</p>
-                                </div>
-                                <Link to={'/Navbar'} className='readmore text-dark'>Read More...</Link>
-                            </div>
-                        </div>
-
-                        <div className="card m-2" id="card" style={{width:'19rem'}}>
-                            <img src={image} className="card-img-top"/>
-                            <div className="card-body">
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div className="d-flex justify-content-between">
-                                    <p className="fw-bold text-success">Comments <i className="bi bi-chat-fill"></i>: 11</p>
-                                    <p className="fw-bold text-secondary">Likes<i className="bi bi-hand-thumbs-up-fill"></i>: 10</p>
-                                </div>
-                                <Link to={'/Navbar'} className='readmore text-dark'>Read More...</Link>
-                            </div>
-                        </div>
-
-                        <div className="card m-2" id="card" style={{width:'19rem'}}>
-                            <img src={image} className="card-img-top"/>
-                            <div className="card-body">
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div className="d-flex justify-content-between">
-                                    <p className="fw-bold text-success">Comments <i className="bi bi-chat-fill"></i>: 11</p>
-                                    <p className="fw-bold text-secondary">Likes<i className="bi bi-hand-thumbs-up-fill"></i>: 10</p>
-                                </div>
-                                <Link to={'/Navbar'} className='readmore text-dark'>Read More...</Link>
-                            </div>
-                        </div>
-
-                        <div className="card m-2" id="card" style={{width:'19rem'}}>
-                            <img src={image} className="card-img-top"/>
-                            <div className="card-body">
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div className="d-flex justify-content-between">
-                                    <p className="fw-bold text-success">Comments <i className="bi bi-chat-fill"></i>: 11</p>
-                                    <p className="fw-bold text-secondary">Likes<i className="bi bi-hand-thumbs-up-fill"></i>: 10</p>
-                                </div>
-                                <Link to={'/Navbar'} className='readmore text-dark'>Read More...</Link>
-                            </div>
-                        </div>
+                        </div> */}
 
                     </div>
 

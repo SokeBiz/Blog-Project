@@ -10,7 +10,7 @@ import Content from './pages/Content'
 const router = createBrowserRouter([
   {path: "/", element: <App />},
   {path: '/Navbar', element: <Navbar />},
-  {path: '/Content', element: <Content />}
+  {path: '/Content/:sid', element: <Content />}
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

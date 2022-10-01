@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function DefaultLayout({ children }) {
 
@@ -10,6 +11,10 @@ function DefaultLayout({ children }) {
 
             <div>
                 {children}
+            </div>
+
+            <div>
+                <Footer />
             </div>
         </>
     )
